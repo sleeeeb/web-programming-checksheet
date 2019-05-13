@@ -10,7 +10,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_11_040517) do
+ActiveRecord::Schema.define(version: 2019_05_13_030131) do
+
+  create_table "achievements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "content_id"
+    t.integer "level"
+    t.integer "flag"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_achievements_on_content_id"
+    t.index ["user_id"], name: "index_achievements_on_user_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.bigint "content_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_comments_on_content_id"
+  end
+
+  create_table "contents", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "genre_id"
+    t.index ["genre_id"], name: "index_contents_on_genre_id"
+  end
+
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_likes_on_comment_id"
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,4 +67,10 @@ ActiveRecord::Schema.define(version: 2019_05_11_040517) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "achievements", "contents"
+  add_foreign_key "achievements", "users"
+  add_foreign_key "comments", "contents"
+  add_foreign_key "contents", "genres"
+  add_foreign_key "likes", "comments"
+  add_foreign_key "likes", "users"
 end
