@@ -1,0 +1,2 @@
+class UserCheck < ApplicationRecord
+end

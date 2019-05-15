@@ -10,17 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_13_030131) do
+ActiveRecord::Schema.define(version: 2019_05_15_063208) do
 
-  create_table "achievements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "content_id"
+  create_table "checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_check_id"
+    t.integer "content_id"
     t.integer "level"
     t.integer "flag"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["content_id"], name: "index_achievements_on_content_id"
-    t.index ["user_id"], name: "index_achievements_on_user_id"
   end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -54,6 +52,12 @@ ActiveRecord::Schema.define(version: 2019_05_13_030131) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "user_checks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -67,8 +71,6 @@ ActiveRecord::Schema.define(version: 2019_05_13_030131) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "achievements", "contents"
-  add_foreign_key "achievements", "users"
   add_foreign_key "comments", "contents"
   add_foreign_key "contents", "genres"
   add_foreign_key "likes", "comments"

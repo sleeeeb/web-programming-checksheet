@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_check_id: 1
+  content_id: 1
+  level: 1
+  flag: 1
+
+two:
+  user_check_id: 1
+  content_id: 1
+  level: 1
+  flag: 1
