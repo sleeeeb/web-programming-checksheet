@@ -1,0 +1,2 @@
+class UserChecksController < ApplicationController
+end
