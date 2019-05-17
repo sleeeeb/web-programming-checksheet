@@ -1,0 +1,47 @@
+= form_with(model: user_check, local: true) do |form|
+  .field
+    = form.label :user_id
+    = form.number_field :user_id
+  .field
+    = form.label :checks, "チェックス"
+    %br/
+    = form.fields_for :checks do |addresses_form|
+      = addresses_form.hidden_field :content_id,value: 1
+      = addresses_form.label :level, " レベル"
+      %label
+        = addresses_form.label "12", 12        
+        = addresses_form.radio_button :level, 12
+        = addresses_form.label "13", 13        
+        = addresses_form.radio_button :level, 13
+      %br/
+      %label{:for => "user_check_checks_attributes_0_flag"} フラッグ
+      %input{:name => "user_check[checks_attributes][0][flag]", :type => "hidden", :value => "5"}/
+      %input#user_check_checks_attributes_0_flag{:name => "user_check[checks_attributes][0][flag]", :type => "checkbox", :value => "6"}/
+      %br/
+  .actions
+    = form.submit
+
+↓使いたかった・・・・・・・！
+      %br/
+      = addresses_form.label :flag, "フラッグ"
+      = addresses_form.check_box 'flag', {}, "6", "5"
+      %br/
+-# = addresses_form.check_box 'flag', {}, "6", "5" %>
+
+-# = addresses_form.radio_button :level, 1 理解していない
+-# = addresses_form.radio_button :level, 2 何となくわかる
+-# = addresses_form.radio_button :level, 3 理解している
+-# = addresses_form.radio_button :level, 4 わかりやすく説明できる
+-# %label
+-#   = addresses_form.radio_button :level, 1 理解していない
+-# %label
+-#   = addresses_form.radio_button :level, 2 何となくわかる
+-# %label
+-#   = addresses_form.radio_button :level, 3 理解している
+-# %label
+-#   = addresses_form.radio_button :level, 4 わかりやすく説明できる
+      %br/
+      %label{:for => "user_check_checks_attributes_0_flag"} フラッグ
+      %input{:name => "user_check[checks_attributes][0][flag]", :type => "hidden", :value => "5"}/
+      %input#user_check_checks_attributes_0_flag{:name => "user_check[checks_attributes][0][flag]", :type => "checkbox", :value => "6"}/
+      %br/

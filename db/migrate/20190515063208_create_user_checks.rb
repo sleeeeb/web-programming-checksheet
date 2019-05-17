@@ -7,3 +7,6 @@ class CreateUserChecks < ActiveRecord::Migration[5.2]
     end
   end
 end
+
+
+rails generate migration AddDetailsToUserChecks genre_id:integer

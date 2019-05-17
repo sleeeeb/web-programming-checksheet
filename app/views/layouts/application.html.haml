@@ -5,8 +5,8 @@
     %title Webプログラミングスキルチェックシート
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
-    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     %link{:crossorigin => "anonymous", :href => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css", :integrity => "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T", :rel => "stylesheet"}/
 
   %body.container-fluid
@@ -25,10 +25,15 @@
             %li.nav-item        
               %a.nav-link{:href => "#"} マイページ
             %li.nav-item
+              = link_to "問題一覧",user_checks_path, method: :get ,class:"nav-link",data: {"turbolinks" => false}              
+            %li.nav-item
+              = link_to "チェックする",new_user_check_path, method: :get ,class:"nav-link",data: {"turbolinks" => false}     
+            %li.nav-item
               = link_to "ログアウト",destroy_user_session_path , method: :delete ,class:"nav-link"                  
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :href => "#", :role => "button"}
           -else
+
             %li.nav-item
               = link_to "ログイン",new_user_session_path, method: :get ,class:"nav-link"
             %li.nav-item
