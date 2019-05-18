@@ -1,3 +1,4 @@
 - @genres.each do |genre|
-  = link_to genre.name,genre_path(genre.id) 
+  = link_to genre.name,genre_path(genre.id)   
+  = genre.contents.length
   %br

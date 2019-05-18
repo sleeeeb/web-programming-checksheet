@@ -8,9 +8,10 @@
       %ul
         - @user_check.errors.full_messages.each do |message|
           %li= message
+
   .field
     = form.hidden_field :genre_id,value:params[:id]
-    = form.label :checks, "."
+    = form.label :checks, "#{@genre.name}"
     %br/
     .check
       %table
