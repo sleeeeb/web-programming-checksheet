@@ -1,0 +1,50 @@
+class UserChecksController < ApplicationController
+  def index
+    @genres=Genre.all
+  end
+
+  def show
+    @user_check = UserCheck.find_by(user_id:current_user.id)
+    @checks=@user_check.checks.first
+  end
+
+  def new
+      @user_check = UserCheck.new
+      @user_checks = Content.last.id.times do 
+        @user_check.checks.build
+      end
+  end
+  def edit
+    @user_check = UserCheck.find_by(user_id:current_user.id)
+    @checks=@user_check.checks.firstend
+  end
+
+  def create
+    @user_check = current_user.user_checks.create(user_check_params)
+    redirect_to root_path
+    # respond_to do |format|
+    #   if @user_check.save
+    #     format.html { redirect_to root_path, notice: 'User check was successfully created.' }
+    #     format.json { render :show, status: :created, location: @user_check }
+    #   else
+    #     format.html { render :new }
+    #     format.json { render json: @user_check.errors, status: :unprocessable_entity }
+    #   end
+    # end
+  end
+  def update
+    @user_check = current_user.user_checks.find_by(id: params[:id]).update(user_check_params)
+    redirect_to root_path
+    
+  end
+
+
+  def user_check_params
+    params.require(:user_check).permit(
+    :genre_id,
+    :user_id,
+    checks_attributes: [:id,:level,:flag,:content_id]
+    )
+  end
+
+end
