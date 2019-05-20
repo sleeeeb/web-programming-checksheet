@@ -1,6 +1,7 @@
 class GenresController < ApplicationController
   def index
     @genres=Genre.all
+    @comments=Comment.all
   end
   
   def show
@@ -13,7 +14,7 @@ class GenresController < ApplicationController
      else
         @user_check = UserCheck.new
         @user_checks = Genre.find(params[:id]).contents.length.times do 
-          @user_check.checkild
+          @user_check.checks.build
         end  
       end
   end
