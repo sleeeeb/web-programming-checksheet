@@ -1,0 +1,9 @@
+=@content.text
+-@comments.each do |comment|
+  =comment.text
+  %br
+.form
+  = form_for [@content, @comment] do |f|
+    = f.hidden_field :content_id,value:params[:id]
+    = f.text_field :text, placeholder: 'type a message'
+    = f.submit 

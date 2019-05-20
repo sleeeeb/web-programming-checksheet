@@ -1,0 +1,224 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+$light-blue: #38aef0;
+$white: #fff;
+$side_blue_dark: #253141;
+$side_blue_light: #2f3e51;
+$light_blue: #38aef0;
+$light_gray: #999;
+$black: #434a54;
+$alert_orange: #f35500;
+.wrapper {
+  a {
+    color: gray;
+  }
+  color: #c0c0c0;
+  background-color: #333333;
+  font-size: 13px;
+  box-sizing: border-box;
+  .chat-side {
+    height: calc(100vh - 20px);
+    width: 400px;
+    float: left;
+    h1 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+    &--header {
+      padding-left: 20px;
+      height: 40px;
+      background-color: #252526;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &__username {
+        font-size: 16px;
+        color: white;
+      }
+      .buttons {
+        float: right;
+        list-style: none;
+      }
+      .awesome-font {
+        float: right;
+        margin-left: 0.3rem;
+        color: white;
+      }
+    }
+    .groups {
+      height: calc(100% - 40px);
+
+      background-color: #252526;
+      .group-name {
+        font-size: 15px;
+        color: white;
+        padding-top: 20px;
+      }
+      .last-message {
+        font-size: 11px;
+        color: white;
+        padding-top: 5px;
+        padding-bottom: 20px;
+      }
+      a {
+        text-decoration: none;
+      }
+    }
+    .todo {
+      height: 170px;
+      overflow: auto;
+
+      padding: 0 10px 0;
+    }
+    .contents {
+      height: calc(100vh - 250px);
+    }
+    .list {
+      overflow-y: scroll;
+      height: calc(100vh - 250px);
+
+      padding: 0 10px 0;
+    }
+    .label {
+      height: 20px;
+      background-color: #383838;
+    }
+  }
+
+  .chat-main {
+    height: calc(100vh - 20px);
+    width: calc(100% - 400px);
+    float: right;
+    .header {
+      .lists {
+        width: 100%;
+      }
+      .list {
+        background-color: #2d2d2d;
+        float: left;
+        height: 100%;
+        line-height: 40px;
+        list-style: none;
+        text-align: center;
+        width: 25%;
+        border-right: thin solid #191919;
+      }
+      ul {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      display: flex;
+      justify-content: space-between;
+      height: 40px;
+      background-color: #454545;
+      border-bottom: thin solid #191919;
+      box-sizing: border-box;
+      .current-group {
+        display: block;
+        padding-left: 40px;
+        &--name {
+          font-size: 20px;
+          padding-top: 35px;
+          color: #333333;
+        }
+        .current-group--members {
+          font-size: 12px;
+          padding-top: 15px;
+          color: #999999;
+        }
+      }
+      .current-group--members-edit {
+        box-sizing: border-box;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px 0;
+        border: solid 1px $light-blue;
+        margin: 30px 40px 0;
+        float: right;
+        text-decoration: none;
+        color: $light-blue;
+      }
+    }
+
+    .messages {
+      box-sizing: border-box;
+      padding: 46px 40px 0;
+      height: calc(100vh - 60px);
+      background-color: #303030;
+      position: relative;
+      overflow: auto;
+      .message {
+        padding-bottom: 40px;
+        &-info {
+          display: flex;
+          margin-bottom: 10px;
+          &--name {
+            color: #333333;
+            font-size: 16px;
+            font-weight: bold;
+          }
+          &--date {
+            color: #999999;
+            padding-left: 10px;
+            font-size: 12px;
+          }
+        }
+        .message-text {
+          color: #434a54;
+          position: relative;
+          font-size: 14px;
+          margin-bottom: 10px;
+        }
+        .lower-message__image {
+          object-fit: contain;
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+.footer {
+  background-color: #2f7ac7;
+  height: 20px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.notification {
+  .notice {
+    background-color: $light_blue;
+    color: $white;
+    text-align: center;
+  }
+
+  .alert {
+    background-color: $alert_orange;
+    color: $white;
+    text-align: center;
+  }
+
+  .header {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .fa-red:before {
+    color: red;
+  }
+}
