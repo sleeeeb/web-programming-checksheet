@@ -9,8 +9,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @comment=current_user.comments.create!(comment_params)
+    @comment=current_user.comments.new(comment_params)
+    if @comment.save
     redirect_to content_url(id: @comment.content_id)
+    else
+        flash[:error] = "コメントの登録に失敗しました"
+    redirect_to content_url(id: @comment.content_id)
+    end
 
   end
 

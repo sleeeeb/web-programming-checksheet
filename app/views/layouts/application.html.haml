@@ -14,7 +14,8 @@
   .wrapper
     .chat-side
       .chat-side--header
-        Web programing skill check test
+        = link_to root_path  do
+          Web programing skill check test
       .groups
         .label
           取り組みたい課題
@@ -42,10 +43,10 @@
       .header
         %ul.lists
           %li.list 
-            = link_to root_path  do
+            = link_to contents_path  do
               %span{:style => "color: Tomato;"}
                 %i.fas.fa-home
-              home
+              問題一覧
           %li.list 
             = link_to destroy_user_session_path , method: :delete do
               %span{:style => "color: Dodgerblue;"}

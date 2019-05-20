@@ -1,6 +1,16 @@
+- if @comment.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@comment.errors.count, "error")
+      prohibited this comment from being saved:
+      - @comment.errors.full_messages.each do |message|
+        %li= message
+
 =@content.text
+%br
 -@comments.each do |comment|
-  =comment.text
+  =comment.text  
+  ="("+comment.user.username+"さん)"
   %br
 .form
   = form_for [@content, @comment] do |f|

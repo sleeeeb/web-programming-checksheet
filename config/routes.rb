@@ -6,6 +6,6 @@ resources :genres
 resources :user_checks
 
   resources :contents do
-    resources :comments, only: [:create]
+    resources :comments
   end
 end
