@@ -1,11 +1,22 @@
 class UserChecksController < ApplicationController
   def index
     @genres=Genre.all
+    texts=[]
+    user_check=User.find(current_user.id).user_checks.each do |user_check| 
+      checks=Check.where(user_check_id:user_check.id).where(["flag > ? ", 5])
+      checks.each do |check|
+        texts<< Content.find(check.content_id).text
+      end
+      @texts=texts
   end
 
   def show
     @user_check = UserCheck.find_by(user_id:current_user.id)
     @checks=@user_check.checks.first
+
+
+    end
+
   end
 
   def new

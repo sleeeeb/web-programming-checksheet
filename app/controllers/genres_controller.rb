@@ -1,18 +1,19 @@
 class GenresController < ApplicationController
   def index
     @genres=Genre.all
+    @comments=Comment.all
   end
   
   def show
-    @num=Genre.find(params[:id]).contents.first.id
+    @genre=Genre.find(params[:id])
+    @num=@genre.contents.first.id
+    
      if UserCheck.find_by(user_id:current_user.id,genre_id: params[:id]).present?
         @user_check = UserCheck.find_by(user_id:current_user.id,genre_id: params[:id])
-        @user_checks = Genre.find(params[:id]).contents.last.id.times do 
-          @user_check.checks.build
-        end    
+        
      else
         @user_check = UserCheck.new
-        @user_checks = Genre.find(params[:id]).contents.last.id.times do 
+        @user_checks = Genre.find(params[:id]).contents.length.times do 
           @user_check.checks.build
         end  
       end

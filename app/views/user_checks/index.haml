@@ -1,3 +1,59 @@
-- @genres.each do |genre|
-  = link_to genre.name,genre_path(genre.id) 
-  %br
+-# .wrapper
+-#   .chat-side
+-#     .chat-side--header
+-#       Web programing skill check test
+-#     .groups
+-#       .label
+-#         取り組みたい課題
+-#       .todo
+-#         -@texts.each do |text|
+-#           =text 
+-#           %br/
+-#       .contents    
+-#         .label
+-#           項目一覧
+-#         .list      
+-#           - @genres.each do |genre|
+-#             = link_to genre.name,genre_path(genre.id)   
+-#             = genre.contents.length
+-#             問中
+-#             -if current_user.user_checks.find_by(genre_id:genre.id).present?
+-#               =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+-#               問は理解しています
+-#             -else
+-#               未実施
+-#             %br        
+-#   .chat-main
+-#     .header
+-#       %ul.lists
+-#         %li.list HOME
+-#         %li.list about
+-#         -if user_signed_in?
+-#           %li.list
+-#             = link_to "ログアウト",destroy_user_session_path , method: :delete
+-#           %li.list 
+-#             = link_to "問題一覧",user_checks_path, method: :get ,data: {"turbolinks" => false}
+-#         -else
+-#           %li.list ログイン
+-#           %li.list 新規登録          
+
+-#     #scroll.messages
+-#   .footer
+
+-# チェックしたい項目をクリックしてチェックしに行ってください
+-# %br/
+-# - @genres.each do |genre|
+-#   = link_to genre.name,genre_path(genre.id)   
+-#   = genre.contents.length
+-#   問中
+-#   -if current_user.user_checks.find_by(genre_id:genre.id).present?
+-#     =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+-#     問は理解しています
+-#   -else
+-#     未実施
+-#   %br
+
+-# やってない子達
+-# -@texts.each do |text|
+-#   =text 
+-#   %br/
