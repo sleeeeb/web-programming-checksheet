@@ -23,7 +23,7 @@ $black: #434a54;
 $alert_orange: #f35500;
 .wrapper {
   a {
-    color: gray;
+    color: #c5c5c5;
   }
   color: #c0c0c0;
   background-color: #333333;
@@ -221,4 +221,17 @@ $alert_orange: #f35500;
   .fa-red:before {
     color: red;
   }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #242425;
+  // border-left: solid 1px #ececec;
+}
+::-webkit-scrollbar-thumb {
+  background: #464647;
+
+  box-shadow: inset 0 0 0 2px #464647;
 }
