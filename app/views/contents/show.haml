@@ -5,13 +5,16 @@
       prohibited this comment from being saved:
       - @comment.errors.full_messages.each do |message|
         %li= message
-
-=@content.text
+%h1
+  =@content.text
+%br
+コメント
 %br
 -@comments.each do |comment|
-  =comment.text  
-  ="("+comment.user.username+"さん) - "+comment.created_at.strftime('%Y/%m/%d %R')
-  %br
+  %li
+    =comment.text  
+    ="("+comment.user.username+"さん) - "+comment.created_at.strftime('%Y/%m/%d %R')
+    %br
 .form
   = form_for [@content, @comment] do |f|
     = f.hidden_field :content_id,value:params[:id]
