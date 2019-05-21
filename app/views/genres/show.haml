@@ -30,7 +30,8 @@
             %td
               =Content.find(addresses_form.index+1).id
             %td
-              = link_to Content.find(addresses_form.index+1).text,genre_path(Content.find(addresses_form.index+1).text)   
+              -# = addresses_form.label :level, " #{ Content.find(addresses_form.index+@num).text}"
+              = link_to Content.find(addresses_form.index+@num).text,content_path(Content.find(addresses_form.index+@num).id)   
             %label
               %td
                 = addresses_form.radio_button :level, 1

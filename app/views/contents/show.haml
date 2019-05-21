@@ -10,7 +10,7 @@
 %br
 -@comments.each do |comment|
   =comment.text  
-  ="("+comment.user.username+"さん)"
+  ="("+comment.user.username+"さん) - "+comment.created_at.strftime('%Y/%m/%d %R')
   %br
 .form
   = form_for [@content, @comment] do |f|
