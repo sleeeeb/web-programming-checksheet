@@ -22,6 +22,12 @@ $light_gray: #999;
 $black: #434a54;
 $alert_orange: #f35500;
 .wrapper {
+  td {
+    padding: 0px 5px;
+  }
+  th {
+    padding: 0px 5px;
+  }
   a {
     color: #c5c5c5;
   }
@@ -38,6 +44,7 @@ $alert_orange: #f35500;
       padding-right: 20px;
     }
     &--header {
+      font-size: 15px;
       padding-left: 20px;
       height: 40px;
       background-color: #252526;
