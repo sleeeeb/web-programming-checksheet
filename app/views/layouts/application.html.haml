@@ -20,25 +20,28 @@
         .label
           取り組みたい課題
         .todo
-          -if @texts.present?
-            -@texts.each do |text| 
-              =text 
-              %br/
+          -if @todo_contents.present?
+            -@todo_contents.each do |content| 
+              #todo_link
+                -link_title=content.text+"("+ content.genre.name + ")"
+                = link_to link_title,genre_path(content.genre_id)   
+                %br/
         .contents    
           .label
             項目一覧
           .list      
             - @genres.each do |genre|
-              = link_to genre.name,genre_path(genre.id)   
-              = genre.contents.length
-              問中
-              -if user_signed_in?
-                -if current_user.user_checks.find_by(genre_id:genre.id).present?
-                  =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
-                  問は理解しています
-                -else
-                  未実施です
-              %br        
+              #content
+                = link_to genre.name,genre_path(genre.id)   
+                = genre.contents.length
+                問中
+                -if user_signed_in?
+                  -if current_user.user_checks.find_by(genre_id:genre.id).present?
+                    =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+                    問は理解しています
+                  -else
+                    未実施です
+                %br        
     .chat-main
       .header
         %ul.lists

@@ -62,33 +62,29 @@ $alert_orange: #f35500;
       height: calc(100% - 40px);
 
       background-color: #252526;
-      .group-name {
-        font-size: 15px;
-        color: white;
-        padding-top: 20px;
-      }
-      .last-message {
-        font-size: 11px;
-        color: white;
-        padding-top: 5px;
-        padding-bottom: 20px;
-      }
+
       a {
         text-decoration: none;
       }
     }
     .todo {
-      height: 170px;
+      height: 190px;
       overflow: auto;
 
       padding: 0 10px 0;
+      #todo_link {
+        padding-top: 4px;
+      }
     }
     .contents {
-      height: calc(100vh - 250px);
+      height: calc(100vh - 270px);
+      .list {
+        padding-top: 4px;
+      }
     }
     .list {
       overflow-y: scroll;
-      height: calc(100vh - 250px);
+      height: calc(100vh - 270px);
 
       padding: 0 10px 0;
     }
