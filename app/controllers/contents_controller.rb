@@ -7,6 +7,7 @@ class ContentsController < ApplicationController
     @content=Content.find(params[:id])
     @comments=@content.comments
     @comment=Comment.new
+
   end
 
   def create

@@ -1,9 +1,26 @@
-=@content.text
+- if @comment.errors.any?
+  #error_explanation
+    %h2
+      = pluralize(@comment.errors.count, "error")
+      prohibited this comment from being saved:
+      - @comment.errors.full_messages.each do |message|
+        %li= message
+%h1
+  =@content.text
+%br
+コメント
+%br
 -@comments.each do |comment|
-  =comment.text
+
+  =raw Rinku.auto_link(h(simple_format(comment.text) ))
+  ="------"+comment.user.username+"さんより - "+comment.created_at.strftime('%Y/%m/%d %R')
+  %br
   %br
 .form
   = form_for [@content, @comment] do |f|
-    = f.hidden_field :content_id,value:params[:id]
-    = f.text_field :text, placeholder: 'type a message'
-    = f.submit 
+    .input-box
+      .input-box__text
+        = f.hidden_field :content_id,value:params[:id]
+        = f.text_area :text, placeholder: 'type a message'
+      .input-box__submit-btn
+        = f.submit 
