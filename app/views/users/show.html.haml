@@ -1,8 +1,18 @@
-%main.row.justify-content-center.mx-0
-  .col.jumbotron.text-center.bg-primary
-    .col.jumbotron
-      %h1 hello,world!
-    .col.jumbotron.bg-transparent
-      %p.lead.font-weight-bold hello,world!
-%script{:src => "./js/jquery-3.3.1.min.js"}
-%script{:src => "./js/bootstrap.bundle.min.js"}
+.jumbotron.jumbotron-fluid
+  .container
+    %h1.display-4 Fluid jumbotron
+    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+
+.jumbotron.jumbotron-fluid
+  .container
+    %h1.display-4 取得済スキル数
+    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+  .progress
+  .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "0", :role => "progressbar"}
+
+.jumbotron.jumbotron-fluid
+  .container
+    %h1.display-4 獲得済トロフィー
+    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+  .progress
+  .progress-bar{"aria-valuemax" => "100", "aria-valuemin" => "0", "aria-valuenow" => "0", :role => "progressbar"}
