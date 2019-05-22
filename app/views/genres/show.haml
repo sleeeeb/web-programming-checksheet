@@ -1,4 +1,4 @@
-
+.pessi
 = form_with(model: @user_check, local: true) do |form|
   - if @user_check.errors.any?
     #error_explanation
@@ -19,8 +19,8 @@
           %th 質問番号
           %th 質問
           %th 知らない
-          %th 聞いたことがある
-          %th 大体わかる
+          %th 出来ない
+          %th 出来る
           %th 人に教えられる
           %th 後でチェック
         
@@ -30,7 +30,8 @@
             %td
               =Content.find(addresses_form.index+1).id
             %td
-              = addresses_form.label :level, " #{ Content.find(addresses_form.index+@num).text}"
+              -# = addresses_form.label :level, " #{ Content.find(addresses_form.index+@num).text}"
+              = link_to Content.find(addresses_form.index+@num).text,content_path(Content.find(addresses_form.index+@num).id)   
             %label
               %td
                 = addresses_form.radio_button :level, 1

@@ -1,9 +1,104 @@
-=@content.text
--@comments.each do |comment|
-  =comment.text
+.pessi
+  = link_to root_path  do
+    Top
+  >
+  = link_to @content.genre.name,genre_path(@content.genre.id)   
+.comments
+  - if @comment.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@comment.errors.count, "error")
+        prohibited this comment from being saved:
+        - @comment.errors.full_messages.each do |message|
+          %li= message
+  .title
+    %span{:style => "color:#649CD1"}> title:
+    =@content.text
   %br
-.form
-  = form_for [@content, @comment] do |f|
-    = f.hidden_field :content_id,value:params[:id]
-    = f.text_field :text, placeholder: 'type a message'
-    = f.submit 
+  comments=[
+  %br/
+  %br
+    -@comments.each.with_index do |comment,i|
+      .comment
+        {
+        %br
+        %span{:style => "color:#649CD1"}> comment_id:
+        %n
+        =i
+        ,
+        %br
+        %span{:style => "color:#649CD1"}> name:
+        &nbsp;
+        %span{:style => "color:#C69373"}> 
+          '
+          =comment.user.username  
+          さん',
+        %br/
+
+        %span{:style => "color:#649CD1"}> text:
+        %n
+        %span{:style => "color:#C69373"}> 
+          <<-TEXT,
+          =raw Rinku.auto_link(h(simple_format(comment.text, {}, wrapper_tag: "div") ))
+          TEXT
+        %br/
+
+        %span{:style => "color:#649CD1"}> created_at:  
+        %n
+        %span{:style => "color:#BACDAB"}> 
+          =comment.created_at.strftime('%Y/%m/%d %R')
+        ,
+        %br/
+
+        %span{:style => "color:#649CD1"}> like_count:
+        %n
+        %span{:style => "color:#C04761"}>       
+          -if comment.like_users.include?(current_user)
+            %i.fas.fa-heart
+          - else            
+            %i.far.fa-heart              
+        =comment.likes.count
+        ,
+        %br/
+
+        %span{:style => "color:#649CD1"}> like:
+
+        %n
+        -if comment.like_users.include?(current_user)
+          =link_to "dislike",like_path(comment.likes.find_by!(user_id:current_user.id)), method: :delete
+          ,
+        -else  
+          = link_to 'like', likes_path(li: {user_id: current_user.id, comment_id: comment.id}), method: :post
+          ,
+        -if comment.user==current_user
+          %br
+          %span{:style => "color:#649CD1"}> edit:
+          %n
+            =link_to "click",edit_content_comment_path( @content,comment.id)
+            ,
+          %br
+          %span{:style => "color:#649CD1"}> delete:
+          %n
+            =link_to "click",content_comment_path( @content,comment.id), method: :delete
+          %br
+        }
+        -unless i == @comments.length - 1
+          ,
+          %br/
+          %br/
+
+    ]
+
+  .form
+    = form_for [@content, @comment] do |f|
+      .input-box
+        .input-box__text
+          = f.hidden_field :content_id,value:params[:id]
+          = f.text_area :text, placeholder: 'type a message'
+        .input-box__submit-btn
+          = f.submit 
+  %br/
+  %br/
+
+
+

@@ -7,15 +7,15 @@ class ApplicationController < ActionController::Base
 
   def get_information
     @genres=Genre.all
-    texts=[]
+    todo_contents=[]
     if current_user.present?
     user_check=User.find(current_user.id).user_checks.each do |user_check| 
       checks=Check.where(user_check_id:user_check.id).where(["flag > ? ", 5])
       checks.each do |check|
-        texts<< Content.find(check.content_id).text
+        todo_contents<< Content.find(check.content_id)
       end
     end
-      @texts=texts
+      @todo_contents=todo_contents
 
     end
   end
