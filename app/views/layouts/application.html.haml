@@ -24,7 +24,7 @@
             -@todo_contents.each do |content| 
               #todo_link
                 -link_title=content.text+"("+ content.genre.name + ")"
-                = link_to link_title,genre_path(content.genre_id)   
+                =link_to link_title,content_path(content.id)  
                 %br/
         .contents    
           .label
