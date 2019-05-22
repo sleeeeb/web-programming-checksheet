@@ -1,0 +1,10 @@
+.form
+  = form_for [@content, @comment] do |f|
+    .input-box
+      .input-box__text
+        = f.hidden_field :content_id,value:params[:id]
+        = f.text_area :text, placeholder: 'type a message'
+      .input-box__submit-btn
+        = f.submit 
+%br/
+%br/

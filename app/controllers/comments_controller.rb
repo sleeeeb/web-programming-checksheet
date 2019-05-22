@@ -13,14 +13,24 @@ class CommentsController < ApplicationController
     if @comment.save
     redirect_to content_url(id: @comment.content_id)
     else
-        flash[:error] = "コメントの登録に失敗しました"
+    flash[:error] = "コメントの登録に失敗しました"
     redirect_to content_url(id: @comment.content_id)
     end
 
   end
 
   def edit
+    @comment=Comment.find(params[:id])
+    @content=@comment.content
+  end
 
+  def update
+    @comment=Comment.find(params[:id]).update(comment_params)
+    redirect_to content_url(params[:content_id])  
+  end
+  def destroy
+    @comment=Comment.find(params[:id]).destroy
+    redirect_to content_url(params[:content_id])      
   end
   private
 
