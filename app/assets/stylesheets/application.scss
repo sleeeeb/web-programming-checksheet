@@ -22,6 +22,9 @@ $light_gray: #999;
 $black: #434a54;
 $alert_orange: #f35500;
 .wrapper {
+  .jumbotron {
+    margin: 0px;
+  }
   td {
     padding: 0px 5px;
   }
