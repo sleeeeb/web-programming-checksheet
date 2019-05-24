@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   def show
-  @user=User.find(1)
+  
   @trophys=[]
   case current_user.comments.length
   when 100...20000
