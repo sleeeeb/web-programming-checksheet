@@ -14,8 +14,12 @@
   .wrapper
     .chat-side
       .chat-side--header
-        = link_to root_path  do
-          Web programing skill check test
+        -if user_signed_in?
+          = link_to user_path(current_user.id)  do
+            Web programing skill check test
+        -else
+          = link_to root_path  do
+            Web programing skill check test
       .groups
         .label
           取り組みたい課題
@@ -30,18 +34,32 @@
           .label
             項目一覧（習得率）
           .list      
-            - @genres.each do |genre|
+            -user_checked_cnt_all=[] 
+            - @genres.each.with_index do |genre,i|
               #content
-                = link_to genre.name,genre_path(genre.id)   
+                = link_to genre_path(genre.id) do
+                  =i+1  
+                  ．
+                  =genre.name   
                 = genre.contents.length
                 問中
                 -if user_signed_in?
                   -if current_user.user_checks.find_by(genre_id:genre.id).present?
-                    =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+                    -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+                    =user_checked_cnt
                     問は理解しています
                   -else
                     未実施です
+                - user_checked_cnt_all << user_checked_cnt
                 %br        
+            %n
+            %n
+            %n            
+            合計：１８５問中
+            =user_checked_cnt_all.compact!.sum
+            問習得済み
+            %br 
+            %br 
     .chat-main
       .header
         %ul.lists
@@ -56,16 +74,16 @@
                 %i.fas.fa-question-circle
               about
           -if user_signed_in?
+            %li.list 
+              = link_to user_path(current_user.id)  do
+                %span{:style => "color: Mediumslateblue;"}
+                  %i.fas.fa-address-card 
+                マイページ
             %li.list
               = link_to destroy_user_session_path , method: :delete do
                 %span{:style => "color: Tomato;"}
-                  %i.fas.fa-address-card
-                ログアウト
-            %li.list 
-              = link_to user_checks_path, method: :get ,data: {"turbolinks" => false} do
-                %span{:style => "color: Mediumslateblue;"}
                   %i.fas.fa-sign-out-alt 
-                マイページ
+                ログアウト                
           -else
             %li.list 
               = link_to new_user_session_path, method: :get  do
@@ -80,6 +98,10 @@
 
       .messages
         = yield
+      %script{:crossorigin => "anonymous", :integrity => "sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo", :src => "https://code.jquery.com/jquery-3.3.1.slim.min.js"}
+      %script{:crossorigin => "anonymous", :integrity => "sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1", :src => "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"}
+      %script{:crossorigin => "anonymous", :integrity => "sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM", :src => "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"}
+
   .footer
     -# %link{:href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css", :rel => "stylesheet"}/
     -# %nav.navbar.navbar-expand-lg.navbar-light.bg-light

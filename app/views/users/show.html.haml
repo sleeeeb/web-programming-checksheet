@@ -1,8 +1,97 @@
-%main.row.justify-content-center.mx-0
-  .col.jumbotron.text-center.bg-primary
-    .col.jumbotron
-      %h1 hello,world!
-    .col.jumbotron.bg-transparent
-      %p.lead.font-weight-bold hello,world!
-%script{:src => "./js/jquery-3.3.1.min.js"}
-%script{:src => "./js/bootstrap.bundle.min.js"}
+.jumbotron.jumbotron-fluid.bg-secondary
+  .container
+    %h1.display-7 
+      =current_user.username
+      さんのマイページ
+    %p.lead 取得したトロフィーの数などが確認できます
+.container
+  .row
+    .col-6.bg-info
+      %h1.display-8 ランキング
+      %h1.display-4 未実装
+      %br/
+      
+      
+    .col-6.bg-danger
+      %h1.display-8 勉強開始時期
+      %h1.display-4 未実装
+      %br/
+      
+
+.jumbotron.jumbotron-fluid.bg-secondary
+  .container
+    %h1.display-7 メダル獲得状況
+    %p.lead 出来るを選択したチェック項目を習得したものと見なし、数に応じてメダルを獲得することができます。
+.container
+  .row
+    
+    -user_checked_cnt_all=[] 
+    - @genres.each do |genre|
+      .col-6.bg-success.checkmedal
+        = link_to genre.id.to_s+"."+genre.name,genre_path(genre.id)   
+        = genre.contents.length
+        問中
+        -if user_signed_in?
+          -if current_user.user_checks.find_by(genre_id:genre.id).present?
+          
+            -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+            - user_checked_cnt_all << user_checked_cnt
+            =user_checked_cnt
+            問出来る
+            -case user_checked_cnt/genre.contents.length.to_f
+              -when 1
+                = image_tag Trophy.find(3).image_url, :alt => '登録ボタン',:size =>'100x100'
+              - when (0.8...1)
+                = image_tag Trophy.find(2).image_url, :alt => '登録ボタン',:size =>'100x100'
+              - when (0.5...0.8)
+                = image_tag Trophy.find(1).image_url, :alt => '登録ボタン',:size =>'100x100'
+          -else
+            未実施です
+
+.jumbotron.jumbotron-fluid.bg-info
+  .container
+    %h1.display-4 
+      取得済スキル：
+      =user_checked_cnt_all.compact.sum.to_s+"個/"
+      =Content.all.length.to_s+"個" 
+    %br/
+    .progress{:style => "height: 50px;"}
+      .progress-bar{:role => "progressbar", :style => "width: #{(user_checked_cnt_all.compact.sum/Content.all.length.to_f*100).floor}%;"}
+
+
+
+
+.jumbotron.jumbotron-fluid.bg-secondary
+  .container
+    %h1.display-7 トロフィー獲得状況
+    %p.lead コメント数、メダル数やいいねの数に応じてトロフィーが表示されます。
+
+.container
+  .row
+    
+
+
+    -@trophys.each do|trophy| 
+      .col-xs-12.col-sm-6.col-md-3.trophy
+        %okodkoddod
+        %br/
+        .trophyname
+          =trophy.name
+        %br/
+        .trophyimage
+          = image_tag trophy.image_url, :alt => '登録ボタン',:size =>'100x100'
+        %br/
+        .trophytext
+          =trophy.text
+
+    .col-xs-12.col-sm-6.col-md-3.trophy
+    .col-xs-12.col-sm-6.col-md-3.trophy
+.jumbotron.jumbotron-fluid.bg-info
+  .container
+    %h1.display-4 
+      取得済トロフィー：
+      =@trophys.length.to_s+"個/"
+      ="10個" 
+    %br/
+    .progress{:style => "height: 50px;"}
+      .progress-bar{:role => "progressbar", :style => "width: #{(@trophys.length/10.to_f*100).floor}%;"}
