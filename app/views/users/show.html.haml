@@ -1,119 +1,97 @@
 .jumbotron.jumbotron-fluid.bg-secondary
   .container
-    %h1.display-7 キシリトールさんのマイページ
-    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+    %h1.display-7 
+      =current_user.username
+      さんのマイページ
+    %p.lead 取得したトロフィーの数などが確認できます
 .container
   .row
     .col-6.bg-info
       %h1.display-8 ランキング
-      %h1.display-4 ５位くらい
+      %h1.display-4 未実装
       %br/
       
       
     .col-6.bg-danger
       %h1.display-8 勉強開始時期
-      %h1.display-4 ２０１８年１１月
+      %h1.display-4 未実装
       %br/
       
 
-
-.jumbotron.jumbotron-fluid.bg-success
-  .container
-    %h1.display-4 取得済スキル：１０個
-    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
-    %br/
-    .progress{:style => "height: 50px;"}
-      .progress-bar{:role => "progressbar", :style => "width: 60%;"}
-        60%
-
-.jumbotron.jumbotron-fluid.bg-info
-  .container
-    %h1.display-4 取得済スキル：１０個
-    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
-    %br/
-    .progress{:style => "height: 50px;"}
-      .progress-bar{:role => "progressbar", :style => "width: 60%;"}
-        60%
-.jumbotron.jumbotron-fluid.bg-secondary
-  .container
-    %h1.display-7 トロフィー獲得状況
-    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
-
-.container
-  .row
-    
-    .col-xs-6.col-sm-4.col-md-3.bg-success
-
-      %okodkoddod
-      %br/
-      %br/
-      each
-    .col-xs-6.col-sm-4.col-md-3.bg-warning
-
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-    .col-xs-6.col-sm-4.col-md-3
-
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-    .col-xs-6.col-sm-4.col-md-3
-
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-
-    .col-xs-6.col-sm-4.col-md-3.bg-warning
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-      %br/
-
-    .col-xs-6.col-sm-4.col-md-3.bg-warning
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-      %br/
-
-    .col-xs-6.col-sm-4.col-md-3.bg-warning
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-      %br/
-
-    .col-xs-6.col-sm-4.col-md-3.bg-warning
-      %okodkoddod
-      %br/
-      %br/
-      = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
-      %br/
-      
 .jumbotron.jumbotron-fluid.bg-secondary
   .container
     %h1.display-7 メダル獲得状況
-    %p.lead This is a modified jumbotron that occupies the entire horizontal space of its parent.
+    %p.lead 出来るを選択したチェック項目を習得したものと見なし、数に応じてメダルを獲得することができます。
 .container
   .row
     
-
+    -user_checked_cnt_all=[] 
     - @genres.each do |genre|
-      .col-6.bg-success
-        = link_to genre.name,genre_path(genre.id)   
+      .col-6.bg-success.checkmedal
+        = link_to genre.id.to_s+"."+genre.name,genre_path(genre.id)   
         = genre.contents.length
         問中
         -if user_signed_in?
           -if current_user.user_checks.find_by(genre_id:genre.id).present?
-            =current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
-            問は理解しています
+          
+            -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+            - user_checked_cnt_all << user_checked_cnt
+            =user_checked_cnt
+            問出来る
+            -case user_checked_cnt/genre.contents.length.to_f
+              -when 1
+                = image_tag Trophy.find(3).image_url, :alt => '登録ボタン',:size =>'100x100'
+              - when (0.8...1)
+                = image_tag Trophy.find(2).image_url, :alt => '登録ボタン',:size =>'100x100'
+              - when (0.5...0.8)
+                = image_tag Trophy.find(1).image_url, :alt => '登録ボタン',:size =>'100x100'
           -else
             未実施です
-        %br        
-        %br        
-        = image_tag '001.png', :alt => '登録ボタン',:size =>'160x240'
+
+.jumbotron.jumbotron-fluid.bg-info
+  .container
+    %h1.display-4 
+      取得済スキル：
+      =user_checked_cnt_all.compact.sum.to_s+"個/"
+      =Content.all.length.to_s+"個" 
+    %br/
+    .progress{:style => "height: 50px;"}
+      .progress-bar{:role => "progressbar", :style => "width: #{(user_checked_cnt_all.compact.sum/Content.all.length.to_f*100).floor}%;"}
+
+
+
+
+.jumbotron.jumbotron-fluid.bg-secondary
+  .container
+    %h1.display-7 トロフィー獲得状況
+    %p.lead コメント数、メダル数やいいねの数に応じてトロフィーが表示されます。
+
+.container
+  .row
+    
+
+
+    -@trophys.each do|trophy| 
+      .col-xs-12.col-sm-6.col-md-3.trophy
+        %okodkoddod
+        %br/
+        .trophyname
+          =trophy.name
+        %br/
+        .trophyimage
+          = image_tag trophy.image_url, :alt => '登録ボタン',:size =>'100x100'
+        %br/
+        .trophytext
+          =trophy.text
+
+    .col-xs-12.col-sm-6.col-md-3.trophy
+    .col-xs-12.col-sm-6.col-md-3.trophy
+.jumbotron.jumbotron-fluid.bg-info
+  .container
+    %h1.display-4 
+      取得済トロフィー：
+      =@trophys.length.to_s+"個/"
+      ="10個" 
+    %br/
+    .progress{:style => "height: 50px;"}
+      .progress-bar{:role => "progressbar", :style => "width: #{(@trophys.length/10.to_f*100).floor}%;"}
