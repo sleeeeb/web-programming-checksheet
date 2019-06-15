@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 devise_for :users
+
+get 'enter', to: 'users#enter'
+get 'about', to: 'users#about'
 root 'users#index'
 resources :users, only: :show
 resources :genres
