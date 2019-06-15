@@ -28,25 +28,28 @@
     -user_checked_cnt_all=[] 
     - @genres.each do |genre|
       .col-6.bg-success.checkmedal
-        = link_to genre.id.to_s+"."+genre.name,genre_path(genre.id)   
+        
+        = link_to genre.id.to_s+"."+genre.name,genre_path(genre.id) 
+        
         = genre.contents.length
         問中
-        -if user_signed_in?
-          -if current_user.user_checks.find_by(genre_id:genre.id).present?
-          
-            -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
-            - user_checked_cnt_all << user_checked_cnt
-            =user_checked_cnt
-            問出来る
-            -case user_checked_cnt/genre.contents.length.to_f
-              -when 1
-                = image_tag Trophy.find(3).image_url, :alt => '登録ボタン',:size =>'100x100'
-              - when (0.8...1)
-                = image_tag Trophy.find(2).image_url, :alt => '登録ボタン',:size =>'100x100'
-              - when (0.5...0.8)
-                = image_tag Trophy.find(1).image_url, :alt => '登録ボタン',:size =>'100x100'
-          -else
-            未実施です
+
+
+        -if User.find(params[:id]).user_checks.find_by(genre_id:genre.id).present?
+        
+          -user_checked_cnt=User.find(params[:id]).user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+          - user_checked_cnt_all << user_checked_cnt
+          =user_checked_cnt
+          問出来る
+          -case user_checked_cnt/genre.contents.length.to_f
+            -when 1
+              = image_tag Trophy.find(3).image_url, :alt => '登録ボタン',:size =>'100x100'
+            - when (0.8...1)
+              = image_tag Trophy.find(2).image_url, :alt => '登録ボタン',:size =>'100x100'
+            - when (0.5...0.8)
+              = image_tag Trophy.find(1).image_url, :alt => '登録ボタン',:size =>'100x100'
+        -else
+          未実施です
 
 .jumbotron.jumbotron-fluid.bg-info
   .container

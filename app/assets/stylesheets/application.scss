@@ -21,7 +21,11 @@ $light_blue: #38aef0;
 $light_gray: #999;
 $black: #434a54;
 $alert_orange: #f35500;
+
 .wrapper {
+  .check {
+    padding: 0 5px;
+  }
   .trophy {
     background-color: gray;
     height: 200px;
@@ -39,8 +43,17 @@ $alert_orange: #f35500;
   td {
     padding: 0px 5px;
   }
+  .question-content {
+    width: 300px;
+  }
   th {
     padding: 0px 5px;
+  }
+  .col-6.bg-success.checkmedal {
+    border: solid black;
+    img {
+      float: right;
+    }
   }
   a {
     color: #c5c5c5;
@@ -262,4 +275,113 @@ $alert_orange: #f35500;
   background: #464647;
 
   box-shadow: inset 0 0 0 2px #464647;
+}
+.flame {
+  height: 100vh;
+  background-color: lightblue;
+}
+.top-wrapper {
+  color: white;
+  font-family: "Arial", YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+    "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, "ＭＳ ゴシック", sans-serif;
+  font-size: 40px;
+  text-align: center;
+  .title {
+    padding-top: 80px;
+    font-size: 50px;
+  }
+  .first {
+    box-sizing: border-box;
+    position: relative;
+
+    margin: auto;
+    background-color: white;
+    .title {
+      padding-top: 0;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      font-size: 80px;
+      color: rgb(255, 255, 255);
+      margin: auto;
+      margin-bottom: 20%;
+      background-color: #2b4f88;
+      height: 40%;
+      width: 70%;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 25px;
+    }
+    .content {
+      font-size: 25px;
+      font-style: inherit;
+      padding-top: 450px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      margin: auto;
+    }
+  }
+  .second {
+    font-size: 40px;
+    text-align: center;
+    .content {
+    }
+    .inpact {
+      font-weight: bold;
+      font-size: 45px;
+    }
+  }
+  .third {
+    font-size: 35px;
+    .title {
+      font: bold;
+    }
+    background-color: #4e8fd7;
+  }
+  .fourth {
+    font-size: 25px;
+    color: white;
+    background-color: navy;
+    .content {
+      padding: 20px 40px;
+      .signup {
+        font-size: 50px;
+        padding-top: 20px;
+      }
+      .last-notice {
+        font-size: 40px;
+        padding-top: 10px;
+        font-weight: bold;
+      }
+      .signup {
+        padding: 10px;
+        margin: auto;
+        color: white;
+        width: 260px;
+        box-shadow: 3px 3px 10px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        margin-top: 50px;
+        font-size: 40px;
+      }
+      .login {
+        padding: 10px;
+        margin: auto;
+        width: 260px;
+        font-size: 30px;
+        color: white;
+        box-shadow: 3px 3px 10px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+    }
+  }
 }

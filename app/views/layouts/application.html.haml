@@ -33,33 +33,34 @@
         .contents    
           .label
             項目一覧（習得率）
-          .list      
-            -user_checked_cnt_all=[] 
-            - @genres.each.with_index do |genre,i|
-              #content
-                = link_to genre_path(genre.id) do
-                  =i+1  
-                  ．
-                  =genre.name   
-                = genre.contents.length
-                問中
-                -if user_signed_in?
-                  -if current_user.user_checks.find_by(genre_id:genre.id).present?
-                    -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
-                    =user_checked_cnt
-                    問は理解しています
-                  -else
-                    未実施です
-                - user_checked_cnt_all << user_checked_cnt
-                %br        
-            %n
-            %n
-            %n            
-            合計：１８５問中
-            =user_checked_cnt_all.compact!.sum
-            問習得済み
-            %br 
-            %br 
+          -if user_signed_in?  
+            .list      
+              -user_checked_cnt_all=[] 
+              - @genres.each.with_index do |genre,i|
+                #content
+                  = link_to genre_path(genre.id) do
+                    =i+1  
+                    ．
+                    =genre.name   
+                  = genre.contents.length
+                  問中
+                  -if user_signed_in?
+                    -if current_user.user_checks.find_by(genre_id:genre.id).present?
+                      -user_checked_cnt=current_user.user_checks.find_by(genre_id:genre.id).checks.where(["level > ? ", 2]).length 
+                      =user_checked_cnt
+                      問は理解しています
+                    -else
+                      未実施です
+                  - user_checked_cnt_all << user_checked_cnt
+                  %br        
+              %n
+              %n
+              %n            
+              合計：１８５問中
+              =user_checked_cnt_all.compact!.sum
+              問習得済み
+              %br 
+              %br 
     .chat-main
       .header
         %ul.lists

@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
+  def enter
+        render :layout => nil
+  end
+  def about
+  end
   def show
-  
   @trophys=[]
   case current_user.comments.length
   when 100...20000
