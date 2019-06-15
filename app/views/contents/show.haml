@@ -2,7 +2,10 @@
   = link_to root_path  do
     Top
   >
-  = link_to @content.genre.name,genre_path(@content.genre.id)   
+  - if user_signed_in?  
+    = link_to @content.genre.name,genre_path(@content.genre.id)   
+  - else
+    = @content.genre.name
 .comments
   - if @comment.errors.any?
     #error_explanation
@@ -10,19 +13,19 @@
         = pluralize(@comment.errors.count, "error")
         prohibited this comment from being saved:
         - @comment.errors.full_messages.each do |message|
-          %li= message
+          %li = message
   .title
-    %span{:style => "color:#649CD1"}> title:
-    =@content.text
+    %span{style: "color:#649CD1"}> title:
+    = @content.text
   %br
-  comments=[
+  comments = [
   %br/
   %br
-    -@comments.each.with_index do |comment,i|
+    - @comments.each.with_index do |comment,i|
       .comment
         {
         %br
-        %span{:style => "color:#649CD1"}> comment_id:
+        %span{style:  "color:#649CD1"}> comment_id:
         %n
         =i
         ,
@@ -88,15 +91,15 @@
           %br/
 
     ]
-
-  .form
-    = form_for [@content, @comment] do |f|
-      .input-box
-        .input-box__text
-          = f.hidden_field :content_id,value:params[:id]
-          = f.text_area :text, placeholder: 'type a message'
-        .input-box__submit-btn
-          = f.submit 
+  -if user_signed_in?  
+    .form
+      = form_for [@content, @comment] do |f|
+        .input-box
+          .input-box__text
+            = f.hidden_field :content_id,value:params[:id]
+            = f.text_area :text, placeholder: 'type a message'
+          .input-box__submit-btn
+            = f.submit 
   %br/
   %br/
 
