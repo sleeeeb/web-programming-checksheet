@@ -21,5 +21,10 @@
     %br/
     = f.password_field :password_confirmation, autocomplete: "new-password"
   .actions
-    = f.submit "Sign up"
+  学習開始年月
+  %br/
+  = f.date_select( :start_date, use_month_numbers: true, prompt:  '　　---',start_year: 1990, end_year: Time.now.year, blank:'---',default: Date.new(1989, 1, 1), id:'page_updated_at_1i',discard_day: true)
+  %br/
+  %br/
+  = f.submit "Sign up"
 = render "devise/shared/links"
