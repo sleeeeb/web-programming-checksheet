@@ -1,3 +1,4 @@
-- @contents.each do|content|
-  =link_to content.text,content_path(content.id)
-  %br
+.pessi
+  - @contents.each do|content|
+    =link_to content.text,content_path(content.id)
+    %br

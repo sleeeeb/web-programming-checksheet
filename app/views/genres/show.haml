@@ -1,51 +1,51 @@
 .pessi
-= form_with(model: @user_check, local: true) do |form|
-  - if @user_check.errors.any?
-    #error_explanation
-      %h2
-        = pluralize(@user_check.errors.count, "error")
-        prohibited this @user_check from being saved:
-      %ul
-        - @user_check.errors.full_messages.each do |message|
-          %li= message
+  = form_with(model: @user_check, local: true) do |form|
+    - if @user_check.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(@user_check.errors.count, "error")
+          prohibited this @user_check from being saved:
+        %ul
+          - @user_check.errors.full_messages.each do |message|
+            %li= message
 
-  .field
-    = form.hidden_field :genre_id,value:params[:id]
-    = form.label :checks, "#{@genre.name}"
-    %br/
-    .check
-      %table
-        %tr
-          %th 質問番号
-          .question-content
-            %th 質問
-          %th 知らない
-          %th 出来ない
-          %th 出来る
-          %th 人に教えられる
-          %th 後でチェック
-        
-        = form.fields_for :checks do |addresses_form|
-          %tr        
-            = addresses_form.hidden_field :content_id,value:addresses_form.index+@num
-            %td
-              =Content.find(addresses_form.index+1).id
-            %td
-              -# = addresses_form.label :level, " #{ Content.find(addresses_form.index+@num).text}"
-              = link_to Content.find(addresses_form.index+@num).text,content_path(Content.find(addresses_form.index+@num).id)   
-            %label
+    .field
+      = form.hidden_field :genre_id,value:params[:id]
+      = form.label :checks, "#{@genre.name}"
+      %br/
+      .check
+        %table
+          %tr
+            %th 質問番号
+            .question-content
+              %th 質問
+            %th 知らない
+            %th 出来ない
+            %th 出来る
+            %th 人に教えられる
+            %th 後でチェック
+          
+          = form.fields_for :checks do |addresses_form|
+            %tr        
+              = addresses_form.hidden_field :content_id,value:addresses_form.index+@num
               %td
-                = addresses_form.radio_button :level, 1
+                =Content.find(addresses_form.index+1).id
               %td
-                = addresses_form.radio_button :level, 2
-              %td
-                = addresses_form.radio_button :level, 3
-              %td
-                = addresses_form.radio_button :level, 4
-              %td
-                = addresses_form.check_box 'flag', {}, "6", "5"
-    .actions
-      = form.submit
+                -# = addresses_form.label :level, " #{ Content.find(addresses_form.index+@num).text}"
+                = link_to Content.find(addresses_form.index+@num).text,content_path(Content.find(addresses_form.index+@num).id)   
+              %label
+                %td
+                  = addresses_form.radio_button :level, 1
+                %td
+                  = addresses_form.radio_button :level, 2
+                %td
+                  = addresses_form.radio_button :level, 3
+                %td
+                  = addresses_form.radio_button :level, 4
+                %td
+                  = addresses_form.check_box 'flag', {}, "6", "5"
+      .actions
+        = form.submit
   -#     %table
   -#       %tr
   -#         %td
