@@ -8,7 +8,12 @@
   .row
     .col-6.bg-info
       %h1.display-8 ランキング
-      %h1.display-4 未実装
+      %h1.display-4 
+        = User.order(rank: :DESC).index(current_user) + 1
+        位
+        /
+        = User.all.length
+        人中
       %br/
       
       
