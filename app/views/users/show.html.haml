@@ -8,13 +8,23 @@
   .row
     .col-6.bg-info
       %h1.display-8 ランキング
-      %h1.display-4 未実装
+      %h1.display-4 
+        = User.order(rank: :DESC).index(current_user) + 1
+        位
+        /
+        = User.all.length
+        人中
       %br/
       
       
     .col-6.bg-danger
       %h1.display-8 勉強開始時期
-      %h1.display-4 未実装
+      %h1.display-4 
+      .study_start
+        =@user.start_date.year
+        年
+        =@user.start_date.month
+        月
       %br/
       
 
