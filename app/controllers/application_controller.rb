@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   def get_information
     @genres = Genre.all.includes([:contents, :user_checks])
-    if current_user.present?
+    if user_signed_in?
       @user_checks = current_user.user_checks
     end
     @todo_contents = User.second.checks.where(flag: 6)
