@@ -25,10 +25,10 @@
           取り組みたい課題
         .todo
           -if @todo_contents.present?
-            -@todo_contents.each do |content| 
+            -@todo_contents.each do |check| 
               #todo_link
-                -link_title=content.text+"("+ content.genre.name + ")"
-                =link_to link_title,content_path(content.id)  
+                -link_title=check.content.text+"("+ check.content.genre.name + ")"
+                =link_to link_title,content_path(check.content.id)  
                 %br/
         .contents    
           .label
