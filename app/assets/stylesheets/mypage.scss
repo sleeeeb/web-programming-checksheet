@@ -1,0 +1,73 @@
+.mypage-wrapper {
+  background: radial-gradient(#8a90964d, #00000000);
+  color: white;
+  .jumbotron.jumbotron-fluid.user-name {
+    text-align: center;
+    color: white;
+    background: linear-gradient(-135deg, #e4a972, #9941d8);
+  }
+  .checkmedal {
+    background: radial-gradient(#145266, #00000000);
+  }
+  .title-medal {
+    background: linear-gradient(#9c46d2, #145266);
+  }
+  .ranking {
+    background: linear-gradient(-135deg, #b669b0, #9941d8);
+  }
+  .start-date {
+    background: linear-gradient(-155deg, #e4a972, #9941d8);
+  }
+  .title-trophy {
+    background: linear-gradient(#0d1820, #670101);
+  }
+  .title-got-trophy {
+    background: linear-gradient(#590304, #0c161d);
+  }
+  .title-skill {
+    background: linear-gradient(#145266, #0c161d);
+  }
+  .trophy {
+    background: radial-gradient(#510406, #270102);
+  }
+  .check {
+    padding: 0 5px;
+  }
+  .trophy {
+    height: 200px;
+  }
+  .fa-question {
+    font-size: 150px;
+  }
+  .checkmedal {
+    min-height: 100px;
+    font-size: 20px;
+  }
+  .jumbotron {
+    margin: 0px;
+  }
+  td {
+    padding: 0px 5px;
+  }
+  .question-content {
+    width: 300px;
+  }
+  th {
+    padding: 0px 5px;
+  }
+  .col-6.bg-success.checkmedal {
+    border: solid black;
+    img {
+      float: right;
+    }
+  }
+  a {
+    color: white;
+  }
+  .row {
+    background: black;
+  }
+  .progress-bar.trophy-bar {
+    background-color: #a20105 !important;
+  }
+}

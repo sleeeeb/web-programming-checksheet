@@ -26,22 +26,3 @@
       = addresses_form.label :flag, "フラッグ"
       = addresses_form.check_box 'flag', {}, "6", "5"
       %br/
--# = addresses_form.check_box 'flag', {}, "6", "5" %>
-
--# = addresses_form.radio_button :level, 1 理解していない
--# = addresses_form.radio_button :level, 2 何となくわかる
--# = addresses_form.radio_button :level, 3 理解している
--# = addresses_form.radio_button :level, 4 わかりやすく説明できる
--# %label
--#   = addresses_form.radio_button :level, 1 理解していない
--# %label
--#   = addresses_form.radio_button :level, 2 何となくわかる
--# %label
--#   = addresses_form.radio_button :level, 3 理解している
--# %label
--#   = addresses_form.radio_button :level, 4 わかりやすく説明できる
-      %br/
-      %label{:for => "user_check_checks_attributes_0_flag"} フラッグ
-      %input{:name => "user_check[checks_attributes][0][flag]", :type => "hidden", :value => "5"}/
-      %input#user_check_checks_attributes_0_flag{:name => "user_check[checks_attributes][0][flag]", :type => "checkbox", :value => "6"}/
-      %br/
