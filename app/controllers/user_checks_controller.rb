@@ -1,6 +1,4 @@
 class UserChecksController < ApplicationController
-  require 'byebug'
-
   def index
     @genres = Genre.all
     @user_checks = current_user.user_checks
