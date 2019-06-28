@@ -2,7 +2,7 @@
   .jumbotron.jumbotron-fluid.user-name
     .container
       %h1.display-7 
-        =current_user.username
+        =@user.username
         さんのマイページ
       %p.lead 取得したトロフィーの数などが確認できます
   .container
@@ -10,7 +10,7 @@
       .col-6.ranking
         %h1.display-8 ランキング
         %h1.display-4 
-          = User.order(rank: :DESC).index(current_user) + 1
+          = User.order(rank: :DESC).index(@user) + 1
           位
           /
           = User.all.length

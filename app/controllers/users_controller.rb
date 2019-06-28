@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @trophys = []
-    case current_user.comments.length
+    case @user.comments.length
     when 100...20000
       @trophys << Trophy.find(8)
       @trophys << Trophy.find(9)
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
       @trophys << Trophy.find(8)
     end
 
-    case current_user.likes.length
+    case @user.likes.length
     when 50...20000
       @trophys << Trophy.find(12)
       @trophys << Trophy.find(13)
