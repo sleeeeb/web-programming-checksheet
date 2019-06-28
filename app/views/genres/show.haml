@@ -26,7 +26,7 @@
             %th 後でチェック
           
           = form.fields_for :checks do |addresses_form|
-            %tr        
+            %tr.hover        
               = addresses_form.hidden_field :content_id,value:addresses_form.index+@num
               %td
                 =Content.find(addresses_form.index+1).id
