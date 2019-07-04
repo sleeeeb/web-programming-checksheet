@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
     @genres = Genre.all.includes([:contents, :user_checks])
     if user_signed_in?
       @user_checks = current_user.user_checks
-      @todo_contents = User.second.checks.where(flag: 6)
+      @todo_contents = current_user.checks.where(flag: 6)
     end
   end
 end

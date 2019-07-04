@@ -12,6 +12,9 @@ class ContentsController < ApplicationController
   def create
   end
 
+  def privacy_policy
+  end
+
   def edit
   end
 end
