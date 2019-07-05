@@ -1,0 +1,20 @@
+.like
+  %span{:style => "color:#649CD1"}> like_count:
+  %n
+  %span{:style => "color:#C04761"}>       
+    -if user_signed_in? && comment.like_users.include?(current_user)
+      %i.fas.fa-heart
+    - else            
+      %i.far.fa-heart              
+  =comment.likes.count
+  ,
+  %br/
+  - if user_signed_in?    
+    %span{:style => "color:#649CD1"}> like:
+    %n
+    -if comment.like_users.include?(current_user)
+      =link_to "click",like_path(comment.likes.find_by!(user_id:current_user.id)), method: :delete, remote: true
+      ,
+    -else  
+      = link_to 'click', likes_path(li: {user_id: current_user.id, comment_id: comment.id}), method: :post, remote: true
+      ,

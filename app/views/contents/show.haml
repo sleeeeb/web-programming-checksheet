@@ -52,38 +52,19 @@
           =comment.created_at.strftime('%Y/%m/%d %R')
         ,
         %br/
+        = render 'likes/like',comment: comment 
 
-        %span{:style => "color:#649CD1"}> like_count:
-        %n
-        %span{:style => "color:#C04761"}>       
-          -if user_signed_in? && comment.like_users.include?(current_user)
-            %i.fas.fa-heart
-          - else            
-            %i.far.fa-heart              
-        =comment.likes.count
-        ,
-        %br/
-        - if user_signed_in?    
-          %span{:style => "color:#649CD1"}> like:
+        -if user_signed_in? && comment.user == current_user
 
+          %span{:style => "color:#649CD1"}> edit:
           %n
-          -if comment.like_users.include?(current_user)
-            =link_to "dislike",like_path(comment.likes.find_by!(user_id:current_user.id)), method: :delete
+            =link_to "click",edit_content_comment_path( @content,comment.id)
             ,
-          -else  
-            = link_to 'like', likes_path(li: {user_id: current_user.id, comment_id: comment.id}), method: :post
-            ,
-          -if current_user && comment.user == current_user
-            %br
-            %span{:style => "color:#649CD1"}> edit:
-            %n
-              =link_to "click",edit_content_comment_path( @content,comment.id)
-              ,
-            %br
-            %span{:style => "color:#649CD1"}> delete:
-            %n
-              =link_to "click",content_comment_path( @content,comment.id), method: :delete
-            %br
+          %br
+          %span{:style => "color:#649CD1"}> delete:
+          %n
+            =link_to "click",content_comment_path( @content,comment.id), method: :delete
+          %br
         }
         -unless i == @comments.length - 1
           ,
