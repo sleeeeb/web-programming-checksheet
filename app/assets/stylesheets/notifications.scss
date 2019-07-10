@@ -1,10 +1,11 @@
 .flash-messages {
   width: 100%;
   position: absolute;
-  z-index: 1;
+
   transition: 1s;
   opacity: 0;
 }
 .flash-messages__show {
   opacity: 0.8;
+  z-index: 1;
 }

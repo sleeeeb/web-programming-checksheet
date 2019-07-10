@@ -1,13 +1,13 @@
-.pessi
-  %h2 Sign up
+.user-session-box
+  %h2.login-title 新規登録
   = form_for(@user, url: user_registration_path) do |f|
     = render "devise/shared/error_messages", resource: resource
     .field
-      = f.label :email
+      = f.label :メールアドレス
       %br/
       = f.email_field :email, autofocus: true, autocomplete: "email"
     .field
-      = f.label :username
+      = f.label :ユーザーネーム
       %br/
       = f.text_field :username, autofocus: true
       - if session["devise.facebook_data"] || session["devise.google_data"]
@@ -15,21 +15,22 @@
         = f.hidden_field :password_confirmation, value: password
       - else
         .field
-          = f.label :password
+          = f.label :パスワード
           - if @minimum_password_length
             %em
-              (#{@minimum_password_length} characters minimum)
+              (#{@minimum_password_length} 文字以上)
           %br/
           = f.password_field :password, autocomplete: "new-password"
         .field
-          = f.label :password_confirmation
+          = f.label :パスワード（確認用）
           %br/
           = f.password_field :password_confirmation, autocomplete: "new-password"
     .actions
     学習開始年月
     %br/
-    = f.date_select( :start_date, use_month_numbers: true, prompt:  '　　---',start_year: 1990, end_year: Time.now.year, blank:'---',default: Date.new(1989, 1, 1), id:'page_updated_at_1i',discard_day: true)
+    = f.date_select( :start_date, use_month_numbers: true, prompt:  '　　---',start_year: 2000, end_year: Time.now.year, blank:'---',default: Date.new(2019, 1, 1), id:'page_updated_at_1i',discard_day: true)
     %br/
     %br/
-    = f.submit "Sign up"
-  = render "devise/shared/links"
+    = f.submit "新規登録"
+  .shared-links
+    = render "devise/shared/links"
