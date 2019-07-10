@@ -1,5 +1,5 @@
-.pessi
-  %h2 Sign up
+.user-session-box
+  %h2.login-title 新規登録
   = form_for(@user, url: user_registration_path) do |f|
     .field
       = f.label :email
@@ -20,4 +20,4 @@
     = f.date_select( :start_date, use_month_numbers: true, prompt:  '　　---',start_year: 1990, end_year: Time.now.year, blank:'---',default: Date.new(1989, 1, 1), id:'page_updated_at_1i',discard_day: true)
     %br/
     %br/
-    = f.submit "Sign up"
+    = f.submit "新規登録"
