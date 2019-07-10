@@ -1,19 +1,25 @@
-.pessi
-  %h2 Log in
+.user-session-box
+  %h2 ログイン
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
     .field
-      = f.label :email
+      = f.label :メールアドレス
       %br/
       = f.email_field :email, autofocus: true, autocomplete: "email"
     .field
-      = f.label :password
+      = f.label :パスワード
       %br/
       = f.password_field :password, autocomplete: "current-password"
     - if devise_mapping.rememberable?
-      .field
+      .field.login-hold
         = f.check_box :remember_me
-        = f.label :remember_me
+        = f.label :ログインを保持する
     .actions
-      = f.submit "Log in"
+      = f.submit "ログイン"
+  -# = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  -#   = devise_error_messages!
+  -#   = f.hidden_field :email, value: User.find(1).email
+  -#   = f.hidden_field :password, value: "password"
+  -#   .test__user
+  -#     = f.submit "テストユーザーでログイン"
+  .shared-links
   = render "devise/shared/links"
-
