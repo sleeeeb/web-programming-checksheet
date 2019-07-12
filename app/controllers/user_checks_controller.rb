@@ -3,7 +3,7 @@ class UserChecksController < ApplicationController
     @genres = Genre.all
     @user_checks = current_user.user_checks
     texts = []
-    user_check = User.find(current_user.id).user_checks.each do |user_check|
+    User.find(current_user.id).user_checks.each do |user_check|
       checks = Check.where(user_check_id: user_check.id).where(['flag > ? ', 5])
       checks.each do |check|
         texts << Content.find(check.content_id).text
@@ -49,7 +49,7 @@ class UserChecksController < ApplicationController
     params.require(:user_check).permit(
       :genre_id,
       :user_id,
-      checks_attributes: [:id, :level, :flag, :content_id],
+      checks_attributes: %i[id level flag content_id]
     )
   end
 end

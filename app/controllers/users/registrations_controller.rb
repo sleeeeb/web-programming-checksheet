@@ -7,13 +7,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # GET /resource/sign_up
   def new
     super
-    if session['devise.google_data']
-      @user.email = session['devise.google_data']['info']['unverified_email']
-    end
-    # byebug
-    if session['devise.facebook_data']
-      @user.email = session['devise.facebook_data']['info']['email']
-    end
+    @user.email = session['devise.google_data']['info']['unverified_email'] if session['devise.google_data']
+    @user.email = session['devise.facebook_data']['info']['email'] if session['devise.facebook_data']
     @user.email = 'ssssss'
   end
 

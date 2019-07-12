@@ -1,7 +1,7 @@
 class LikesController < ApplicationController
   def create
     @comment = Comment.find(params[:li][:comment_id])
-    aa = @comment.likes.create(user_id: current_user.id)
+    @comment.likes.create(user_id: current_user.id)
     redirect_to content_url(id: @comment.content_id)
   end
 

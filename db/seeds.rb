@@ -15,10 +15,9 @@
 #   Content.create!({text: text,genre_id: genre})
 # end
 
-
 # content_id=1
 # genre_num.each_with_index do |num,i|
-#   num.times do 
+#   num.times do
 #     Content.find(content_id).update(genre_id: i+1)
 #     content_id += 1
 #   end
@@ -40,6 +39,6 @@
   ['大感謝のメダル', '50回いいねをした', 'iine1.png']
 ].each do |name, text, image_url|
   Trophy.create!(
-    { name: name, text: text, image_url: image_url }
+    name: name, text: text, image_url: image_url
   )
-  end
+end
