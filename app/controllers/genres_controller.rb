@@ -7,15 +7,10 @@ class GenresController < ApplicationController
   def show
     @genre = Genre.find(params[:id])
     @num = @genre.contents.first.id
+    return true if @user_check = UserCheck.find_by(user_id: current_user.id, genre_id: params[:id])
 
-    if UserCheck.find_by(user_id: current_user.id, genre_id: params[:id]).present?
-      @user_check = UserCheck.find_by(user_id: current_user.id, genre_id: params[:id])
-    else
-      @user_check = UserCheck.new
-      Genre.find(params[:id]).contents.length.times do
-        @user_check.checks.build
-      end
-    end
+    @user_check = UserCheck.new
+    Genre.find(params[:id]).contents.length.times { @user_check.checks.build }
   end
 
   def new
@@ -33,15 +28,6 @@ class GenresController < ApplicationController
   def create
     @user_check = current_user.user_checks.create(user_check_params)
     redirect_to root_path
-    # respond_to do |format|
-    #   if @user_check.save
-    #     format.html { redirect_to root_path, notice: 'User check was successfully created.' }
-    #     format.json { render :show, status: :created, location: @user_check }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @user_check.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   def update
@@ -53,7 +39,7 @@ class GenresController < ApplicationController
     params.require(:user_check).permit(
       :genre_id,
       :user_id,
-      checks_attributes: [:id, :level, :flag, :content_id],
+      checks_attributes: %i[id level flag content_id]
     )
   end
 end

@@ -9,12 +9,9 @@ class ContentsController < ApplicationController
     @comment = Comment.new
   end
 
-  def create
-  end
+  def create; end
 
-  def privacy_policy
-  end
+  def privacy_policy; end
 
-  def edit
-  end
+  def edit; end
 end
