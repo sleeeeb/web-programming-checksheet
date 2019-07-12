@@ -1,0 +1,112 @@
+.user-session-box {
+  label {
+    margin-bottom: 2px;
+  }
+  width: 330px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  margin-top: 20px;
+  .field {
+    padding-top: 5px;
+  }
+  #user_email {
+    height: 33px;
+    width: 100%;
+  }
+  #user_password {
+    height: 33px;
+    width: 100%;
+  }
+  #user_password_confirmation {
+    height: 33px;
+    width: 100%;
+  }
+  #user_username {
+    height: 33px;
+    width: 100%;
+  }
+  .actions input {
+    height: 33px;
+    width: 100%;
+  }
+  .test__user input {
+    height: 33px;
+    width: 100%;
+  }
+
+  .login__link-buttons {
+    margin-top: 10px;
+    line-height: 33px;
+    background: green;
+    height: 33px;
+    width: 330px;
+    text-align: center;
+    text-decoration: none;
+  }
+  .login-google {
+    a {
+      text-decoration: none;
+    }
+    background: white;
+    color: black;
+  }
+  .login-facebook {
+    background: #385185;
+    color: white;
+  }
+  .signup {
+    a {
+      text-decoration: none;
+    }
+    background: #0099e8;
+    color: white;
+  }
+  #user_remember_me {
+    margin: 0px 0 0 5px;
+  }
+  .login-hold {
+    padding: 0;
+    position: relative;
+    label {
+      top: 0;
+      position: absolute;
+      height: 33px;
+      line-height: 33px;
+      margin: 0 0 0 30px;
+    }
+  }
+  // signup
+  #user_start_date_1i {
+    margin: 5px 30px 0 10px;
+    height: 33px;
+    width: 120px;
+  }
+  #user_start_date_2i {
+    margin: 5px 0 0 0px;
+    height: 33px;
+    width: 120px;
+  }
+  input {
+    margin-bottom: 10px;
+    height: 33px;
+    width: 100%;
+  }
+  a {
+    width: 330px;
+    background: #0099e8;
+    margin-bottom: 10px;
+    height: 33px;
+  }
+  .shared-links {
+    border-top: solid 1px;
+    padding-top: 5px;
+    margin-top: 5px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}

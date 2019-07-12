@@ -1,0 +1,115 @@
+.enter-wrapper {
+  .flame {
+    height: 100vh;
+    width: 100%;
+    background-color: lightblue;
+  }
+
+  color: white;
+  font-family: "Arial", YuGothic, "Yu Gothic", "Hiragino Kaku Gothic ProN",
+    "ヒラギノ角ゴ ProN W3", "メイリオ", Meiryo, "ＭＳ ゴシック", sans-serif;
+  font-size: 6vh;
+  text-align: center;
+  .title {
+    padding-top: 4%;
+    font-size: 7vh;
+  }
+  .top-link {
+    a {
+      color: white;
+    }
+  }
+  .paragraph {
+    padding-top: 3vh;
+  }
+  .first {
+    height: 100vh;
+    box-sizing: border-box;
+    position: relative;
+    margin: auto;
+    background-color: white;
+    .title {
+      padding-top: 0;
+      box-sizing: border-box;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      font-size: 80px;
+      color: rgb(255, 255, 255);
+      margin: auto;
+      background-color: #2b4f88;
+      height: 300px;
+      width: 870px;
+      text-align: center;
+    }
+    .subtitle {
+      font-size: 25px;
+    }
+    .content {
+      font-size: 25px;
+      font-style: inherit;
+      padding-top: 450px;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      margin: auto;
+    }
+  }
+  .second {
+    font-size: 5vh;
+    text-align: center;
+    .inpact {
+      font-weight: bold;
+      font-size: 6vh;
+    }
+  }
+  .third {
+    font-size: 4vh;
+    .title {
+      font: bold;
+    }
+    background-color: #4e8fd7;
+  }
+  .fourth {
+    font-size: 3vh;
+    color: white;
+    background-color: navy;
+    .content {
+      padding: 20px 40px;
+      .signup {
+        font-size: 50px;
+        padding-top: 20px;
+      }
+      .last-notice {
+        font-size: 6vh;
+        padding-top: 10px;
+        font-weight: bold;
+      }
+      .signup {
+        padding: 10px;
+        margin: auto;
+        color: white;
+        width: 260px;
+        box-shadow: 3px 3px 10px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        margin-top: 5vh;
+        font-size: 5vh;
+      }
+      .login {
+        padding: 10px;
+        margin: auto;
+        width: 260px;
+        font-size: 3vh;
+        color: white;
+        box-shadow: 3px 3px 10px 10px rgba(0, 0, 0, 0.4);
+        border-radius: 10px;
+        margin-top: 3vh;
+      }
+    }
+  }
+}
