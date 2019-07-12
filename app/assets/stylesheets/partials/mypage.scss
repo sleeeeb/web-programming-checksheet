@@ -7,6 +7,8 @@
     background: linear-gradient(-135deg, #e4a972, #9941d8);
   }
   .checkmedal {
+    min-height: 100px;
+    font-size: 20px;
     background: linear-gradient(-155deg, #1d2f3d, #357b9e);
   }
   .title-medal {
@@ -28,20 +30,18 @@
     background: linear-gradient(#145266, #0c161d);
   }
   .trophy {
-    background: radial-gradient(#510406, #270102);
+    height: 200px;
+    background: linear-gradient(-155deg, #190000, #590405);
+  }
+  #trophy-box {
+    margin-left: 1vw;
   }
   .check {
     padding: 0 5px;
   }
-  .trophy {
-    height: 200px;
-  }
+
   .fa-question {
     font-size: 150px;
-  }
-  .checkmedal {
-    min-height: 100px;
-    font-size: 20px;
   }
   .jumbotron {
     margin: 0px;
@@ -69,5 +69,8 @@
   }
   .progress-bar.trophy-bar {
     background-color: #a20105 !important;
+  }
+  .study_start {
+    font-size: 50px;
   }
 }

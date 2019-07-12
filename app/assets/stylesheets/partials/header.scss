@@ -1,0 +1,29 @@
+.header {
+  .lists {
+    width: 100%;
+  }
+  a:hover {
+    text-decoration: none;
+    color: #cacaca;
+  }
+  .list {
+    background-color: #2d2d2d;
+    float: left;
+    height: 100%;
+    line-height: 40px;
+    list-style: none;
+    text-align: center;
+    width: 25%;
+    border-right: thin solid #191919;
+  }
+  .list:hover {
+    background: #383737;
+  }
+  ul {
+    height: 100%;
+    padding: 0;
+  }
+  height: 40px;
+  background-color: #454545;
+  border-bottom: thin solid #191919;
+}
