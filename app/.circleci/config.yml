@@ -90,4 +90,4 @@ jobs: # a collection of steps
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:t5d84bCpsVJoef43wz3ZV61gkogmTXjuYSNhGHTLs9M nagasoe0326"
+            - "e4:e6:84:a2:ce:03:af:7c:4f:b7:e9:cf:e6:42:a8:47"
