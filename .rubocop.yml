@@ -40,3 +40,7 @@ ClassAndModuleChildren:
 
 int/AssignmentInCondition:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
