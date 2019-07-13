@@ -2,7 +2,6 @@ require 'rails_helper'
 
 describe User do
   describe '#create' do
-
     # nickname,email,passwordがあればOK
     it 'is valid with a nickname,email,password' do
       user = build(:user)
@@ -39,7 +38,7 @@ describe User do
 
     # emailかぶっちゃだめ
     it 'is invalid with duplicate email' do
-      user = create(:user)
+      create(:user)
       another_user = build(:user)
       another_user.valid?
       expect(another_user.errors[:email]).to include('はすでに存在します')
@@ -57,7 +56,5 @@ describe User do
       user.valid?
       expect(user.errors[:password][0]).to include('は6文字以上で入力してください')
     end
-
-
   end
 end
