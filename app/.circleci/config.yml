@@ -86,3 +86,8 @@ jobs: # a collection of steps
       - store_test_results: # Upload test results for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
           path: test_results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for example deploy configs
+  deploy-job:
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:t5d84bCpsVJoef43wz3ZV61gkogmTXjuYSNhGHTLs9M nagasoe0326"
