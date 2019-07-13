@@ -16,8 +16,7 @@ jobs:
 
     steps:
       - checkout
-      - run: rm Gemfile.lock
-      - run: gem install bundler
+      - run: gem install bundler -v 2.0.1
 
       # Download and cache dependencies
       - restore_cache:
