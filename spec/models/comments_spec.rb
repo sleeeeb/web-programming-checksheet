@@ -2,12 +2,11 @@ require 'rails_helper'
 
 describe Comment do
   describe '#create' do
-
     # アソシエーションの作成
     before do
-      genre = create(:genre)
-      user = create(:user)
-      content = create(:content)
+      create(:genre)
+      create(:user)
+      create(:content)
     end
     # nickname,email,passwordがあればOK
     it 'is valid with comment' do

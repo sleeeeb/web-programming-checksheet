@@ -1,4 +1,3 @@
-
 FactoryBot.define do
   factory :content do
     id { 1 }
