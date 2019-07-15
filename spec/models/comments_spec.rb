@@ -8,13 +8,13 @@ describe Comment do
       create(:user)
       create(:content)
     end
-    # nickname,email,passwordがあればOK
+    # コメントがあればOK
     it 'is valid with comment' do
       comment = create(:comment)
       expect(comment).to be_valid
     end
-    # nickname,email,passwordがあればOK
-    it 'is valid with comment' do
+    # コメントがないとエラー
+    it 'is invalid without comment' do
       comment = build(:comment, text: '')
       comment.valid?
       expect(comment.errors[:text]).to include("を入力してください")
