@@ -8,35 +8,35 @@ describe User do
       expect(user).to be_valid
     end
 
-    # emailなしではだめ
+    # emailなしではエラー
     it 'is invalid without a email' do
       user = build(:user, email: ' ')
       user.valid?
       expect(user.errors[:email]).to include("を入力してください")
     end
 
-    # usernameなしではだめ
-    it 'is invalid without a nickname' do
+    # usernameなしではエラー
+    it 'is invalid without a username' do
       user = build(:user, username: ' ')
       user.valid?
       expect(user.errors[:username]).to include("を入力してください")
     end
 
-    # passwordなしではだめ
+    # passwordなしではエラー
     it 'is invalid without a password' do
       user = build(:user, password: ' ')
       user.valid?
       expect(user.errors[:password]).to include("を入力してください")
     end
 
-    # passwordがあってもpassword_confirmationがないとだめ
+    # passwordがあってもpassword_confirmationがないとエラー
     it 'is invalid without a password_confirmation if password exist' do
       user = build(:user, password_confirmation: ' ')
       user.valid?
       expect(user.errors[:password_confirmation]).to include("とPasswordの入力が一致しません")
     end
 
-    # emailかぶっちゃだめ
+    # 使用されているemailを使うとエラー
     it 'is invalid with duplicate email' do
       create(:user)
       another_user = build(:user)
@@ -50,7 +50,7 @@ describe User do
       expect(user).to be_valid
     end
 
-    # パスワード５文字以下だとだめ
+    # パスワード５文字以下だとエラー
     it 'is invalid with password less than 5 letters' do
       user = build(:user, password: 'hoge0', password_confirmation: 'hoge0')
       user.valid?

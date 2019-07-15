@@ -3,8 +3,8 @@
     .input-box
       .input-box__text
         = f.hidden_field :content_id,value:params[:id]
-        = f.text_area :text, placeholder: 'type a message'
+        = f.text_area :text, placeholder: 'type a message', id: "textarea"
       .input-box__submit-btn
-        = f.submit 
+        = f.submit id: "edit_button"
 %br/
 %br/
