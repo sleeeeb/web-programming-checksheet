@@ -58,12 +58,12 @@
 
           %span{:style => "color:#649CD1"}> edit:
           %n
-            =link_to "click",edit_content_comment_path( @content,comment.id)
+            =link_to "click",edit_content_comment_path( @content,comment.id),class: 'edit_commment_button'
             ,
           %br
           %span{:style => "color:#649CD1"}> delete:
           %n
-            =link_to "click",content_comment_path( @content,comment.id), method: :delete
+            =link_to "click",content_comment_path( @content,comment.id), {class: 'destroy_commment_button' , method: :delete}
           %br
         }
         -unless i == @comments.length - 1
