@@ -15,11 +15,12 @@
         = f.label :ログインを保持する
     .actions
       = f.submit "ログイン"
-  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    = devise_error_messages!
-    = f.hidden_field :email, value: User.find(1).email
-    = f.hidden_field :password, value: "password"
-    .test__user
-      = f.submit "テストユーザーでログイン"
+  -unless Rails.env == 'test'
+    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+      = devise_error_messages!
+      = f.hidden_field :email, value: User.find(1).email
+      = f.hidden_field :password, value: "password"
+      .test__user
+        = f.submit "テストユーザーでログイン"
   .shared-links
   = render "devise/shared/links"
